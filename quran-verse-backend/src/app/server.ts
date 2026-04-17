@@ -12,7 +12,7 @@ const startServer = async () => {
 
     //here config.port comes from index.js file
     server = app.listen(config.port, () => {
-      console.log(`The Portfolio app listening on port ${config.port}`);
+      console.log(`The Quran-Verse app listening on port ${config.port}`);
     });
   } catch (err) {
     console.log(err);
