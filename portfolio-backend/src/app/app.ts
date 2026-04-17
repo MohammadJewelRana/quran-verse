@@ -7,11 +7,7 @@ import globalErrorHandler from "./middleware/globalErrorHandler";
 const app: Application = express();
 
 //Middlewares
-const allowedOrigins = [
-  "http://localhost:3000",
-  "http://localhost:3001",
-  "https://quick-hire-job-xi.vercel.app",
-];
+const allowedOrigins = ["http://localhost:3000", "http://localhost:3001"];
 
 const corsOptions = {
   origin: function (origin: string | undefined, callback: any) {
@@ -35,7 +31,7 @@ app.use("/api", router);
 app.get("/api", (_req: Request, res: Response) => {
   res.status(200).json({
     success: true,
-    message: "Portfolio Backend Server is running ",
+    message: "Quran-Verse Backend Server is running ",
   });
 });
 
