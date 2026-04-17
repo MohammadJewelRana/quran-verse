@@ -9,7 +9,7 @@ export interface ISurah {
   name: string;
   transliteration: string;
   translation: string;
-  type: string;
+  type: "meccan" | "medinan";
   total_verses: number;
   verses: IVerse[];
 }

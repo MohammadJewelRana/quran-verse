@@ -1,22 +1,50 @@
 import { Request, Response } from "express";
+import httpStatus from "http-status";
+
+import sendResponse from "../../utils/sendResponse";
+
 import { SurahService } from "./surahs.service";
+import { catchAsync } from "../../utils/catchAsync";
 
-const getAllSurahs = async (req: Request, res: Response) => {
+//  Get All Surahs 
+const getAllSurahs = catchAsync(async (req: Request, res: Response) => {
   const result = await SurahService.getAllSurahs();
-  res.json(result);
-};
 
-const getSingleSurah = async (req: Request, res: Response) => {
-  const id = Number(req.params.id);
-  const result = await SurahService.getSingleSurah(id);
-  res.json(result);
-};
+  sendResponse(res, {
+    statusCode: httpStatus.OK,
+    success: true,
+    message: "Surahs retrieved successfully",
+    data: result,
+  });
+});
 
-const searchAyah = async (req: Request, res: Response) => {
-  const q = req.query.q as string;
-  const result = await SurahService.searchAyah(q);
-  res.json(result);
-};
+//  Get Single Surah
+const getSingleSurah = catchAsync(async (req: Request, res: Response) => {
+  const { id } = req.params;
+
+  const result = await SurahService.getSingleSurah(Number(id));
+
+  sendResponse(res, {
+    statusCode: httpStatus.OK,
+    success: true,
+    message: "Surah retrieved successfully",
+    data: result,
+  });
+});
+
+//  Search Ayah
+const searchAyah = catchAsync(async (req: Request, res: Response) => {
+  const { q } = req.query;
+
+  const result = await SurahService.searchAyah(q as string);
+
+  sendResponse(res, {
+    statusCode: httpStatus.OK,
+    success: true,
+    message: "Search results retrieved successfully",
+    data: result,
+  });
+});
 
 export const SurahController = {
   getAllSurahs,

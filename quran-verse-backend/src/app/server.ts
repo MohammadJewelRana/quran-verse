@@ -10,31 +10,53 @@ const startServer = async () => {
     await mongoose.connect(config.database_url as string);
     console.log("✅ MongoDB connected successfully");
 
-    //here config.port comes from index.js file
     server = app.listen(config.port, () => {
-      console.log(`The Quran-Verse app listening on port ${config.port}`);
+      console.log(`🚀 QuranVerse app running on port ${config.port}`);
     });
   } catch (err) {
-    console.log(err);
+    console.error("❌ Failed to connect MongoDB:", err);
+    process.exit(1);
   }
 };
+
 startServer();
 
-//for Asynchronous code
+//  UNHANDLED REJECTION (async error)
 process.on("unhandledRejection", (err) => {
-  console.log("unhandledRejection is detected,shutting down...", err);
+  console.error("⚠️ Unhandled Rejection detected. Shutting down...", err);
 
   if (server) {
     server.close(() => {
       process.exit(1);
     });
+  } else {
+    process.exit(1);
   }
+});
 
+//  UNCAUGHT EXCEPTION (sync error)
+process.on("uncaughtException", (err) => {
+  console.error("⚠️ Uncaught Exception detected. Shutting down...", err);
   process.exit(1);
 });
 
-//for synchronous code
-process.on("uncaughtException", (err) => {
-  console.log("unhandledException is detected,shutting down...", err);
-  process.exit(1);
+//  GRACEFUL SHUTDOWN
+process.on("SIGTERM", () => {
+  console.log("⚠️ SIGTERM received. Closing server...");
+
+  if (server) {
+    server.close(() => {
+      console.log("💤 Server closed");
+    });
+  }
+});
+
+process.on("SIGINT", () => {
+  console.log("⚠️ SIGINT received. Closing server...");
+
+  if (server) {
+    server.close(() => {
+      console.log("💤 Server closed");
+    });
+  }
 });
