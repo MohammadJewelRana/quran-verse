@@ -13,8 +13,7 @@ const LIMIT = 20;
 export default function Page() {
   const [page, setPage] = useState(1);
 
-  const { surahs, meta, isLoading, isError } =
-    useGetAllSurahs(page, LIMIT);
+  const { surahs, meta, isLoading, isError } = useGetAllSurahs(page, LIMIT);
 
   // ✅ memoized values
   const totalPages = meta?.totalPages ?? 1;
@@ -59,8 +58,7 @@ export default function Page() {
                   isCompact
                   classNames={{
                     wrapper: "gap-1",
-                    item:
-                      "text-white/70 data-[hover=true]:bg-emerald-500/10 data-[active=true]:bg-emerald-500 data-[active=true]:text-black",
+                    item: "text-white/70 data-[hover=true]:bg-emerald-500/10 data-[active=true]:bg-emerald-500 data-[active=true]:text-black",
                     cursor: "bg-emerald-500 text-black",
                   }}
                 />
@@ -79,7 +77,6 @@ export default function Page() {
   return (
     <div className="text-white">
       <div className="md:px-4 md:py-8 space-y-8">
-
         {/* HERO */}
         <section className="rounded-2xl border border-white/10 bg-gradient-to-br from-[#0D1626] via-[#09111F] to-[#050A14] p-5 sm:p-6 lg:p-8">
           <p className="text-xs uppercase tracking-wider text-emerald-400">
@@ -98,14 +95,11 @@ export default function Page() {
         {/* HEADER */}
         <div className="flex items-center justify-between">
           <h2 className="text-lg sm:text-xl font-semibold">All Surahs</h2>
-          <span className="text-xs text-white/40">
-            {totalSurahs} total
-          </span>
+          <span className="text-xs text-white/40">{totalSurahs} total</span>
         </div>
 
         {/* CONTENT */}
         {content}
-
       </div>
     </div>
   );

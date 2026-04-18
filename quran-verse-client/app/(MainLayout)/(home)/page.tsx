@@ -7,6 +7,7 @@ import ContinueSection from "./_components/ContinueSection";
 import SurahCard from "../../../components/surahs/SurahCard";
 import EmptyCard from "@/components/surahs/EmptyCard";
 import SurahCardSkeleton from "@/components/surahs/SurahsCardSkeleton";
+import Link from "next/link";
 
 const page = () => {
   const [page, setPage] = useState(1);
@@ -21,12 +22,22 @@ const page = () => {
   return (
     <div className="space-y-8">
       <ContinueSection />
-
       <section className="flex items-center justify-between">
-        <h2 className="text-xl sm:text-2xl font-semibold text-white">Surahs</h2>
-        <span className="text-xs sm:text-sm text-white/40">
-          {totalSurahs} total surahs
-        </span>
+        <div>
+          <h2 className="text-xl font-semibold text-white sm:text-2xl">
+            Surahs
+          </h2>
+          <span className="text-xs text-white/40 sm:text-sm">
+            {totalSurahs} total surahs
+          </span>
+        </div>
+
+        <Link
+          href="/surah"
+          className="rounded-xl border border-white/10 bg-white/5 px-4 py-2 text-sm font-medium text-white/80 transition hover:border-emerald-500/30 hover:bg-emerald-500/10 hover:text-emerald-300"
+        >
+          View All Surahs
+        </Link>
       </section>
 
       {isLoading ? (
