@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 type Props = {
   surah: {
     id: number;
@@ -50,9 +52,11 @@ export default function SurahCard({ surah }: Props) {
         </span>
       </div>
 
-      <button className="relative z-10 mt-4 w-full rounded-xl bg-gradient-to-r from-emerald-500 to-teal-500 py-2 font-medium text-black transition hover:brightness-110 text-sm">
-        Read Verses
-      </button>
+  <Link href={`/surah/${surah.id}`}>
+  <button className="relative z-10 mt-4 w-full rounded-xl bg-gradient-to-r from-emerald-500 to-teal-500 py-2 font-medium text-black transition hover:brightness-110 text-sm">
+    Read Verses
+  </button>
+</Link>
     </div>
   );
 }

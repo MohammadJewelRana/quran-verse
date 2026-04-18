@@ -8,7 +8,7 @@ import SurahCard from "../../../components/surahs/SurahCard";
 import EmptyCard from "@/components/surahs/EmptyCard";
 import SurahCardSkeleton from "@/components/surahs/SurahsCardSkeleton";
 
-export default function Page() {
+const page = () => {
   const [page, setPage] = useState(1);
   const limit = 12;
 
@@ -82,4 +82,6 @@ export default function Page() {
       )}
     </div>
   );
-}
+};
+
+export default page;
