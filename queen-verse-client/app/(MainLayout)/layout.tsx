@@ -4,6 +4,7 @@ import { useState } from "react";
 import Sidebar from "./(home)/_components/Sidebar";
 import MobileSidebar from "./(home)/_components/MobileSidebar";
 import Header from "./(home)/_components/Header";
+import SearchBar from "./(home)/_components/SearchBar";
 
 export default function MainLayout({
   children,
@@ -22,6 +23,7 @@ export default function MainLayout({
 
       <div className="flex-1 min-w-0 min-h-0 flex flex-col">
         <Header onMenuClick={() => setOpen(true)} />
+          {/* <SearchBar/> */}
 
         <main className="flex-1 min-h-0 overflow-y-auto px-4 sm:px-6 lg:px-8 py-5">
           {children}
