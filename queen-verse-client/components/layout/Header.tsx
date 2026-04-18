@@ -5,7 +5,7 @@ import { FiSearch, FiSettings, FiBell, FiMenu } from "react-icons/fi";
 import { useState } from "react";
 import SettingsDrawer from "./SettingsDrawer";
 
-export default function Header({ onMenuClick }: any) {
+const Header = ({ onMenuClick }: any) => {
   const [open, setOpen] = useState(false);
 
   return (
@@ -21,8 +21,15 @@ export default function Header({ onMenuClick }: any) {
                 <FiMenu size={16} />
               </button>
 
-              <h2 className="text-lg sm:text-xl font-semibold text-white truncate">
-                Quran Reader
+              <h2 className="block md:hidden text-base font-semibold text-emerald-300 truncate">
+                QuranVerse
+              </h2>
+
+              <h2
+                className="hidden md:block text-lg sm:text-xl font-semibold text-emerald-300 truncate"
+                dir="rtl"
+              >
+                بِسْمِ ٱللّٰهِ ٱلرَّحْمَٰنِ ٱلرَّحِيمِ
               </h2>
             </div>
 
@@ -62,4 +69,6 @@ export default function Header({ onMenuClick }: any) {
       <SettingsDrawer open={open} setOpen={setOpen} />
     </>
   );
-}
+};
+
+export default Header;

@@ -3,7 +3,7 @@
 import { Drawer, DrawerContent, DrawerBody } from "@heroui/react";
 import { FiBookOpen, FiHeart, FiBookmark, FiInfo } from "react-icons/fi";
 
-export default function MobileSidebar({ open, setOpen }: any) {
+const MobileSidebar = ({ open, setOpen }: any) => {
   return (
     <Drawer
       isOpen={open}
@@ -40,3 +40,5 @@ export default function MobileSidebar({ open, setOpen }: any) {
     </Drawer>
   );
 }
+
+export default MobileSidebar;

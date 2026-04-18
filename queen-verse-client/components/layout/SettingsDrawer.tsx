@@ -9,7 +9,7 @@ import {
   Button,
 } from "@heroui/react";
 
-export default function SettingsDrawer({ open, setOpen }: any) {
+const SettingsDrawer = ({ open, setOpen }: any) => {
   return (
     <Drawer
       isOpen={open}
@@ -38,7 +38,9 @@ export default function SettingsDrawer({ open, setOpen }: any) {
             <DrawerHeader className="px-5 pt-5 pb-2 shrink-0">
               <div>
                 <h2 className="text-xl font-semibold">Settings</h2>
-                <p className="text-sm text-white/50 mt-1">Customize reading view</p>
+                <p className="text-sm text-white/50 mt-1">
+                  Customize reading view
+                </p>
               </div>
             </DrawerHeader>
 
@@ -76,4 +78,6 @@ export default function SettingsDrawer({ open, setOpen }: any) {
       </DrawerContent>
     </Drawer>
   );
-}
+};
+
+export default SettingsDrawer;
