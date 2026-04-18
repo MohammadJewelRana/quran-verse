@@ -7,6 +7,7 @@ import SurahHero from "@/components/ayah/SurahHero";
 import { useGetSingleSurah } from "@/store/hooks/surahs.hook";
 import { useParams } from "next/navigation";
 import Pagination from "@/components/ayah/Pagination";
+import SearchBar from "@/components/layout/SearchBar";
 
 export default function SurahPage() {
   const params = useParams();
@@ -38,7 +39,8 @@ export default function SurahPage() {
   }
 
   return (
-    <div className="min-h-screen text-white">
+    <div className="  text-white">
+      <SearchBar />
       <div className="  px-4 py-6 sm:px-6">
         <div className="mb-6">
           <SurahHero surah={surah} />

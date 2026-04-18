@@ -18,7 +18,7 @@ type Props = {
   surah: Surah;
 };
 
-const SurahCard=({ surah }: Props)=> {
+const SurahCard = ({ surah }: Props) => {
   const router = useRouter();
   const [bookmarked, setBookmarked] = useState(false);
   const [favorited, setFavorited] = useState(false);
@@ -50,7 +50,7 @@ const SurahCard=({ surah }: Props)=> {
         surahName: surah.name,
         transliteration: surah.transliteration,
         ayahNumber: 1,
-      })
+      }),
     );
 
     router.push(`/surah/${surah.id}`);
@@ -132,6 +132,6 @@ const SurahCard=({ surah }: Props)=> {
       </button>
     </div>
   );
-}
+};
 
 export default SurahCard;

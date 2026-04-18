@@ -12,6 +12,8 @@ import {
   FiSettings,
   FiBookOpen,
 } from "react-icons/fi";
+import img from "@/assets/logo/logo.jpg";
+import Image from "next/image";
 
 const Item = ({ label, icon, href, active = false }: any) => {
   return (
@@ -21,7 +23,7 @@ const Item = ({ label, icon, href, active = false }: any) => {
         "w-full flex items-center gap-3 px-4 py-3 rounded-xl text-sm transition border",
         active
           ? "bg-emerald-500/15 text-emerald-400 border-emerald-500/20 shadow-[0_0_0_1px_rgba(16,185,129,0.08)]"
-          : "text-white/65 border-transparent hover:bg-white/5 hover:text-white hover:border-white/10"
+          : "text-white/65 border-transparent hover:bg-white/5 hover:text-white hover:border-white/10",
       )}
     >
       <span className="text-base shrink-0">{icon}</span>
@@ -35,22 +37,45 @@ const Sidebar = () => {
 
   return (
     <div className="h-full flex flex-col p-4 bg-gradient-to-b from-[#08111F] via-[#091320] to-[#020617]">
-      <div className="shrink-0 mb-5 pt-2 px-1">
-        <h2 className="text-2xl font-bold text-emerald-400">QuranVerse</h2>
-        <p className="text-[11px] uppercase tracking-[0.24em] text-white/35 mt-2">
-          آية
-        </p>
-      </div>
+    
+ <div className="shrink-0 mb-5 pt-2 px-1 flex items-center gap-3">
+  
+  {/* Logo Image */}
+  <Image
+    src={img}
+    alt="QuranVerse Logo"
+    width={36}
+    height={36}
+    className="rounded-lg object-cover"
+    priority
+  />
+
+  {/* Text */}
+  <div>
+    <h2 className="text-lg font-bold text-emerald-400 leading-tight">
+      QuranVerse
+    </h2>
+    <p className="text-[10px] uppercase tracking-[0.24em] text-white/35">
+      آية
+    </p>
+  </div>
+
+</div>
 
       <div className="flex-1 min-h-0 overflow-y-auto pr-1 space-y-2 pt-2">
-        <Item label="Home" href="/" active={pathname === "/"} icon={<FiHome />} />
- 
-<Item
-  label="Surahs"
-  href="/surah"
-  active={pathname === "/surah"}
-  icon={<FiBookOpen />}
-/>
+        <Item
+          label="Home"
+          href="/"
+          active={pathname === "/"}
+          icon={<FiHome />}
+        />
+
+        <Item
+          label="Surahs"
+          href="/surah"
+          active={pathname === "/surah"}
+          icon={<FiBookOpen />}
+        />
         <Item
           label="Bookmarks"
           href="/bookmarks"
@@ -69,7 +94,12 @@ const Sidebar = () => {
           active={pathname === "/settings"}
           icon={<FiSettings />}
         />
-        <Item label="About" href="/about" active={pathname === "/about"} icon={<FiInfo />} />
+        <Item
+          label="About"
+          href="/about"
+          active={pathname === "/about"}
+          icon={<FiInfo />}
+        />
       </div>
 
       <div className="shrink-0 mt-4 pt-4 border-t border-white/10">
