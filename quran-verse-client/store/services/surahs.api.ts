@@ -1,18 +1,40 @@
 import { baseApi } from "../baseApi";
 
+type GetAllSurahsArg = {
+  page?: number;
+  limit?: number;
+};
+
+type Surah = {
+  id: number;
+  name: string;
+  transliteration: string;
+  total_verses: number;
+  type: string;
+};
+
+type SurahListResponse = {
+  success: boolean;
+  data: Surah[];
+  meta: {
+    page: number;
+    limit: number;
+    total: number;
+    totalPages: number;
+  };
+};
+
 export const surahApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
-
-    // 🔹 Get all surahs
-    getAllSurahs: builder.query({
-      query: () => ({
+    getAllSurahs: builder.query<SurahListResponse, GetAllSurahsArg>({
+      query: ({ page = 1, limit = 12 } = {}) => ({
         url: "/surahs",
         method: "GET",
+        params: { page, limit },
       }),
       providesTags: ["Surahs"],
     }),
 
-    // 🔹 Get single surah
     getSingleSurah: builder.query({
       query: (id: string) => ({
         url: `/surahs/${id}`,
@@ -21,7 +43,6 @@ export const surahApi = baseApi.injectEndpoints({
       providesTags: ["Surahs"],
     }),
 
-    // 🔹 Search ayah
     searchAyah: builder.query({
       query: (searchTerm: string) => {
         const params = new URLSearchParams();
@@ -38,14 +59,10 @@ export const surahApi = baseApi.injectEndpoints({
       },
       providesTags: ["Surahs"],
     }),
-
   }),
-
   overrideExisting: true,
 });
 
-
-// ✅ EXPORT HOOKS FROM SERVICE (IMPORTANT)
 export const {
   useGetAllSurahsQuery,
   useGetSingleSurahQuery,

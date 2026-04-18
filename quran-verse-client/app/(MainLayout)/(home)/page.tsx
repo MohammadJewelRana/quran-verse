@@ -4,16 +4,12 @@ import { useGetAllSurahs } from "@/store/hooks/surahs.hook";
 import ContinueSection from "./_components/ContinueSection";
 import SurahCard from "./_components/SurahCard";
 
- 
-
 export default function Page() {
   const { surahs, isLoading } = useGetAllSurahs();
   console.log(surahs);
-  
 
   return (
     <div className="space-y-8">
-      
       {/* ✅ Top Section */}
       <ContinueSection />
 
