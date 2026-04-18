@@ -15,11 +15,15 @@ export const useGetAllSurahs = (page = 1, limit = 12) => {
     isError: !!error,
   };
 };
-
-export const useGetSingleSurah = (id: string) => {
-  const { data, error, isLoading } = useGetSingleSurahQuery(id, {
-    skip: !id,
-  });
+export const useGetSingleSurah = (
+  id: string,
+  page: number,
+  limit: number
+) => {
+  const { data, error, isLoading, isFetching } = useGetSingleSurahQuery(
+    { id, page, limit },
+    { skip: !id }
+  );
 
   if (error) {
     toast.error("Failed to fetch surah!");
@@ -28,6 +32,7 @@ export const useGetSingleSurah = (id: string) => {
   return {
     surah: data?.data ?? null,
     isLoading,
+    isFetching,
     isError: !!error,
   };
 };

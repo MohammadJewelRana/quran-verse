@@ -1,20 +1,25 @@
 import AyahCard from "./AyahCard";
 
-type Props = {
-  verses: {
-    id: number;
-    text: string;
-    translation: string;
-  }[];
+type Verse = {
+  id: number;
+  text: string;
+  translation: string;
+  verse_number?: number;
+  verse_no?: number;
+  number?: number;
 };
 
-export default function AyahList({ verses }: any) {
+type Props = {
+  verses: Verse[];
+};
+
+export default function AyahList({ verses }: Props) {
   return (
     <div className="space-y-3">
-      {verses.map((ayah: any, index: number) => (
+      {verses.map((ayah) => (
         <AyahCard
           key={ayah.id}
-          number={index + 1}
+          number={ayah.verse_number ?? ayah.verse_no ?? ayah.number ?? ayah.id}
           arabic={ayah.text}
           translation={ayah.translation}
         />

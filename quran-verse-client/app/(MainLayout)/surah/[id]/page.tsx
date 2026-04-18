@@ -1,15 +1,25 @@
 "use client";
 
+import { useState } from "react";
 import AyahList from "@/components/ayah/AyahList";
 import SurahHero from "@/components/ayah/SurahHero";
+ 
 import { useGetSingleSurah } from "@/store/hooks/surahs.hook";
 import { useParams } from "next/navigation";
+import Pagination from "@/components/ayah/Pagination";
 
 export default function SurahPage() {
   const params = useParams();
   const id = params?.id as string;
 
-  const { surah, isLoading, isError } = useGetSingleSurah(id);
+  const [page, setPage] = useState(1);
+  const limit = 10;
+
+  const { surah, isLoading, isFetching, isError } = useGetSingleSurah(
+    id,
+    page,
+    limit
+  );
 
   if (isLoading) {
     return (
@@ -28,18 +38,21 @@ export default function SurahPage() {
   }
 
   return (
-<div className="min-h-screen text-white">
-  <div className="mx-auto max-w-4xl px-4 py-6 sm:px-6">
+    <div className="min-h-screen text-white">
+      <div className="  px-4 py-6 sm:px-6">
+        <div className="mb-6">
+          <SurahHero surah={surah} />
+        </div>
 
-    {/* Hero */}
-    <div className="mb-6">
-      <SurahHero surah={surah} />
+        <AyahList verses={surah.verses} />
+
+        <Pagination
+          currentPage={page}
+          totalPages={surah.meta?.totalPages || 1}
+          onPageChange={setPage}
+          isFetching={isFetching}
+        />
+      </div>
     </div>
-
-    {/* Ayahs */}
-    <AyahList verses={surah.verses} />
-
-  </div>
-</div>
   );
 }

@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 
 export function useSettings() {
-  const [arabicSize, setArabicSize] = useState(28);
+  const [arabicSize, setArabicSize] = useState(22);
   const [translationSize, setTranslationSize] = useState(16);
   const [font, setFont] = useState("font-amiri");
 
