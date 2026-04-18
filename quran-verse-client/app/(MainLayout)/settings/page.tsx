@@ -53,7 +53,7 @@ const page = () => {
 
   return (
     <div className="    text-white">
-      <div className="  px-4 py-8 sm:px-6 lg:px-8">
+      <div className="  md:px-4 md:py-8 ">
         <div className="mb-8 flex items-start justify-between gap-4">
           <div>
             <div className="mb-3 flex items-center gap-2 text-emerald-400">
