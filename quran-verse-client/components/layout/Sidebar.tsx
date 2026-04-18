@@ -10,6 +10,7 @@ import {
   FiHome,
   FiSearch,
   FiSettings,
+  FiBookOpen,
 } from "react-icons/fi";
 
 const Item = ({ label, icon, href, active = false }: any) => {
@@ -44,6 +45,12 @@ const Sidebar = () => {
       <div className="flex-1 min-h-0 overflow-y-auto pr-1 space-y-2 pt-2">
         <Item label="Home" href="/" active={pathname === "/"} icon={<FiHome />} />
  
+<Item
+  label="Surahs"
+  href="/surah"
+  active={pathname === "/surah"}
+  icon={<FiBookOpen />}
+/>
         <Item
           label="Bookmarks"
           href="/bookmarks"

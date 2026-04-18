@@ -10,7 +10,7 @@ type ContinueReading = {
   transliteration?: string;
 };
 
-export default function ContinueSection() {
+const ContinueSection = () => {
   const [lastRead, setLastRead] = useState<ContinueReading | null>(null);
 
   useEffect(() => {
@@ -30,9 +30,7 @@ export default function ContinueSection() {
         Welcome Back
       </h1>
 
-      <p className="mt-1 text-sm text-white/60">
-        Continue your last session.
-      </p>
+      <p className="mt-1 text-sm text-white/60">Continue your last session.</p>
 
       <div className="mt-4 rounded-xl border border-white/10 bg-white/5 px-4 py-3">
         {lastRead ? (
@@ -60,4 +58,6 @@ export default function ContinueSection() {
       </div>
     </section>
   );
-}
+};
+
+export default ContinueSection;
