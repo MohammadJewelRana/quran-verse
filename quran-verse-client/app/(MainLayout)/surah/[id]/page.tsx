@@ -3,7 +3,7 @@
 import { useState } from "react";
 import AyahList from "@/components/ayah/AyahList";
 import SurahHero from "@/components/ayah/SurahHero";
- 
+
 import { useGetSingleSurah } from "@/store/hooks/surahs.hook";
 import { useParams } from "next/navigation";
 import Pagination from "@/components/ayah/Pagination";
@@ -18,7 +18,7 @@ export default function SurahPage() {
   const { surah, isLoading, isFetching, isError } = useGetSingleSurah(
     id,
     page,
-    limit
+    limit,
   );
 
   if (isLoading) {

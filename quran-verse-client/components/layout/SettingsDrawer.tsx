@@ -8,8 +8,19 @@ import {
   DrawerFooter,
   Button,
 } from "@heroui/react";
+import { useSettings } from "@/context/settings-context";
 
 const SettingsDrawer = ({ open, setOpen }: any) => {
+  const {
+    font,
+    arabicSize,
+    translationSize,
+    setFont,
+    setArabicSize,
+    setTranslationSize,
+    resetSettings,
+  } = useSettings();
+
   return (
     <Drawer
       isOpen={open}
@@ -32,46 +43,91 @@ const SettingsDrawer = ({ open, setOpen }: any) => {
         },
       }}
     >
-      <DrawerContent className="bg-[#09111F] text-white border-l border-white/10 shadow-2xl overflow-hidden">
+      <DrawerContent className="overflow-hidden border-l border-white/10 bg-[#09111F] text-white shadow-2xl">
         {(onClose) => (
-          <div className="h-full w-full flex flex-col">
-            <DrawerHeader className="px-5 pt-5 pb-2 shrink-0">
+          <div className="flex h-full w-full flex-col">
+            <DrawerHeader className="shrink-0 px-5 pb-2 pt-5">
               <div>
                 <h2 className="text-xl font-semibold">Settings</h2>
-                <p className="text-sm text-white/50 mt-1">
+                <p className="mt-1 text-sm text-white/50">
                   Customize reading view
                 </p>
               </div>
             </DrawerHeader>
 
-            <DrawerBody className="px-5 py-4 space-y-6 overflow-y-auto">
+            <DrawerBody className="space-y-6 overflow-y-auto px-5 py-4">
               <div className="space-y-3">
                 <p className="text-sm text-white/60">Arabic Font</p>
-                <select className="w-full h-11 px-3 bg-[#111B2D] border border-white/10 rounded-xl outline-none text-white">
-                  <option>Amiri</option>
-                  <option>Noto</option>
-                  <option>Uthmani</option>
-                </select>
+                <div className="grid grid-cols-2 gap-2">
+                  <button
+                    onClick={() => setFont("amiri")}
+                    className={`rounded-xl border px-3 py-3 text-sm transition ${
+                      font === "amiri"
+                        ? "border-emerald-500 bg-emerald-500/10 text-emerald-300"
+                        : "border-white/10 bg-[#111B2D] text-white/70"
+                    }`}
+                  >
+                    Amiri
+                  </button>
+                  <button
+                    onClick={() => setFont("noto")}
+                    className={`rounded-xl border px-3 py-3 text-sm transition ${
+                      font === "noto"
+                        ? "border-emerald-500 bg-emerald-500/10 text-emerald-300"
+                        : "border-white/10 bg-[#111B2D] text-white/70"
+                    }`}
+                  >
+                    Noto Naskh
+                  </button>
+                </div>
               </div>
 
               <div className="space-y-3">
-                <p className="text-sm text-white/60">Arabic Size</p>
-                <input type="range" className="w-full accent-emerald-500" />
+                <p className="text-sm text-white/60">
+                  Arabic Size: {arabicSize}px
+                </p>
+                <input
+                  type="range"
+                  min="16"
+                  max="40"
+                  step="1"
+                  value={arabicSize}
+                  onChange={(e) => setArabicSize(Number(e.target.value))}
+                  className="w-full accent-emerald-500"
+                />
               </div>
 
               <div className="space-y-3">
-                <p className="text-sm text-white/60">Translation Size</p>
-                <input type="range" className="w-full accent-emerald-500" />
+                <p className="text-sm text-white/60">
+                  Translation Size: {translationSize}px
+                </p>
+                <input
+                  type="range"
+                  min="10"
+                  max="24"
+                  step="1"
+                  value={translationSize}
+                  onChange={(e) => setTranslationSize(Number(e.target.value))}
+                  className="w-full accent-emerald-500"
+                />
               </div>
             </DrawerBody>
 
-            <DrawerFooter className="px-5 pb-5 pt-2 shrink-0">
-              <Button
-                className="w-full bg-emerald-500 text-black font-medium"
-                onPress={onClose}
-              >
-                Close
-              </Button>
+            <DrawerFooter className="shrink-0 px-5 pb-5 pt-2">
+              <div className="flex w-full gap-3">
+                <Button
+                  className="flex-1 border border-white/10 bg-transparent text-white"
+                  onPress={resetSettings}
+                >
+                  Reset
+                </Button>
+                <Button
+                  className="flex-1 bg-emerald-500 font-medium text-black"
+                  onPress={onClose}
+                >
+                  Close
+                </Button>
+              </div>
             </DrawerFooter>
           </div>
         )}
