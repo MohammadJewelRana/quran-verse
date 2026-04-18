@@ -1,0 +1,45 @@
+@import "tailwindcss";
+
+/* HeroUI */
+@plugin '../hero.ts';
+@source '../node_modules/@heroui/theme/dist/**/*.{js,ts,jsx,tsx}';
+
+/* Dark mode */
+@custom-variant dark (&:is(.dark *));
+
+/* =========================
+   THEME TOKENS (ONLY VARIABLES)
+========================= */
+
+@theme {
+  /* Fonts */
+  --font-sans: var(--font-sans);
+  --font-arabic-amiri: var(--font-arabic-amiri);
+  --font-arabic-noto: var(--font-arabic-noto);
+
+  /* Colors */
+  --color-primary: #10B981;
+  --color-bg-main: #020617;
+  --color-bg-card: #0F172A;
+  --color-border: #1E293B;
+  --color-text-primary: #E2E8F0;
+  --color-text-secondary: #94A3B8;
+}
+
+/* =========================
+   BASE RESET ONLY
+========================= */
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  scroll-behavior: smooth;
+}
+
+/* Arabic fix (only needed global thing) */
+.arabic {
+  direction: rtl;
+  text-align: right;
+  line-height: 2;
+}
