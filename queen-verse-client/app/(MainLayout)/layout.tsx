@@ -1,9 +1,8 @@
 "use client";
 
 import { useState } from "react";
-import { FiMenu } from "react-icons/fi";
-import MobileSidebar from "./(home)/_components/MobileSidebar";
 import Sidebar from "./(home)/_components/Sidebar";
+import MobileSidebar from "./(home)/_components/MobileSidebar";
 import Header from "./(home)/_components/Header";
 
 export default function MainLayout({
@@ -14,27 +13,19 @@ export default function MainLayout({
   const [open, setOpen] = useState(false);
 
   return (
-    <div className="flex h-screen overflow-hidden bg-[var(--color-bg-main)] text-[var(--color-text-primary)]">
-
-      {/* ✅ Sidebar (NO GAP FIX) */}
-      <aside className="hidden md:block w-64 shrink-0 border-r border-[var(--color-border)] bg-[#020617]">
+    <div className="h-screen overflow-hidden bg-[#0B1220] text-white flex">
+      <aside className="hidden md:block w-72 shrink-0 border-r border-white/10 bg-[#09111F]">
         <Sidebar />
       </aside>
 
-      {/* ✅ Mobile Sidebar */}
       <MobileSidebar open={open} setOpen={setOpen} />
 
-      {/* ✅ Main Area */}
-      <div className="flex flex-col flex-1 w-full">
-
-        {/* ✅ Header */}
+      <div className="flex-1 min-w-0 min-h-0 flex flex-col">
         <Header onMenuClick={() => setOpen(true)} />
 
-        {/* ✅ Page Content */}
-        <main className="flex-1 overflow-y-auto px-4 md:px-6 py-4">
+        <main className="flex-1 min-h-0 overflow-y-auto px-4 sm:px-6 lg:px-8 py-5">
           {children}
         </main>
-
       </div>
     </div>
   );
