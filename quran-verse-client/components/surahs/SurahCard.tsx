@@ -3,6 +3,8 @@
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { FiHeart, FiBookmark } from "react-icons/fi";
+import { useRouter } from "next/navigation";
+import toast from "react-hot-toast";
 
 import {
   isBookmarked,
@@ -11,13 +13,13 @@ import {
   toggleFavorite,
   type Surah,
 } from "@/lib/storage";
-import toast from "react-hot-toast";
 
 type Props = {
   surah: Surah;
 };
 
-export default function SurahCard({ surah }: Props) {
+const SurahCard=({ surah }: Props)=> {
+  const router = useRouter();
   const [bookmarked, setBookmarked] = useState(false);
   const [favorited, setFavorited] = useState(false);
 
@@ -38,6 +40,20 @@ export default function SurahCard({ surah }: Props) {
     const exists = next.some((item) => item.id === surah.id);
     setFavorited(exists);
     toast.success(exists ? "Added to favorites" : "Removed from favorites");
+  };
+
+  const handleContinueReading = () => {
+    localStorage.setItem(
+      "continue-reading",
+      JSON.stringify({
+        surahId: surah.id,
+        surahName: surah.name,
+        transliteration: surah.transliteration,
+        ayahNumber: 1,
+      })
+    );
+
+    router.push(`/surah/${surah.id}`);
   };
 
   return (
@@ -107,11 +123,15 @@ export default function SurahCard({ surah }: Props) {
         </span>
       </div>
 
-      <Link href={`/surah/${surah.id}`} className="relative z-10 mt-4 block">
-        <div className="w-full rounded-xl bg-gradient-to-r from-emerald-500 to-teal-500 py-2 text-center text-sm font-medium text-black transition hover:brightness-110">
-          Read Verses
-        </div>
-      </Link>
+      <button
+        onClick={handleContinueReading}
+        className="relative z-10 mt-4 w-full rounded-xl bg-gradient-to-r from-emerald-500 to-teal-500 py-2 text-center text-sm font-medium text-black transition hover:brightness-110"
+        type="button"
+      >
+        Read Verses
+      </button>
     </div>
   );
 }
+
+export default SurahCard;
