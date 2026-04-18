@@ -9,7 +9,7 @@ type Props = {
   onRemove: (id: number) => void;
 };
 
-export function BookmarkCard({ surah, onRemove }: Props) {
+const BookmarkFavoriteCard=({ surah, onRemove }: Props)=> {
   return (
     <div className="rounded-2xl border border-white/10 bg-gradient-to-br from-[#111B2D] via-[#0D1626] to-[#08111F] p-4 shadow-[0_12px_40px_rgba(0,0,0,0.18)]">
       <div className="flex items-start justify-between gap-3">
@@ -26,8 +26,8 @@ export function BookmarkCard({ surah, onRemove }: Props) {
         <button
           onClick={() => onRemove(surah.id)}
           className="cursor-pointer text-white/40 transition hover:text-rose-400"
-          aria-label="Remove bookmark"
-          title="Remove from bookmarks"
+          aria-label="Remove item"
+          title="Remove"
           type="button"
         >
           <FiTrash2 />
@@ -49,3 +49,5 @@ export function BookmarkCard({ surah, onRemove }: Props) {
     </div>
   );
 }
+
+export default BookmarkFavoriteCard;
