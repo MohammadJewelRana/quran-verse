@@ -1,0 +1,70 @@
+@import "tailwindcss";
+
+/* HeroUI */
+@plugin '../hero.ts';
+@source '../node_modules/@heroui/theme/dist/**/*.{js,ts,jsx,tsx}';
+
+/* Dark mode */
+@custom-variant dark (&:is(.dark *));
+
+/* =========================
+   THEME TOKENS (ONLY VARIABLES)
+========================= */
+
+@theme {
+  /* Fonts */
+  --font-sans: var(--font-sans);
+  --font-arabic-amiri: var(--font-arabic-amiri);
+  --font-arabic-noto: var(--font-arabic-noto);
+
+  /* Colors */
+  --color-primary: #10B981;
+  --color-bg-main: #020617;
+  --color-bg-card: #0F172A;
+  --color-border: #1E293B;
+  --color-text-primary: #E2E8F0;
+  --color-text-secondary: #94A3B8;
+}
+
+/* =========================
+   BASE RESET ONLY
+========================= */
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  scroll-behavior: smooth;
+}
+
+/* Arabic fix (only needed global thing) */
+.arabic {
+  direction: rtl;
+  text-align: right;
+  line-height: 2;
+}
+
+/* Scrollbar */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #10b981 #020617;
+}
+
+*::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+*::-webkit-scrollbar-track {
+  background: #020617;
+}
+
+*::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #10b981, #0f766e);
+  border-radius: 999px;
+  border: 2px solid #020617;
+}
+
+*::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, #34d399, #10b981);
+}
