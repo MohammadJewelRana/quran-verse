@@ -1,6 +1,8 @@
 "use client";
 
 import clsx from "clsx";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 import {
   FiHeart,
   FiBookmark,
@@ -10,9 +12,10 @@ import {
   FiSettings,
 } from "react-icons/fi";
 
-const Item = ({ label, icon, active = false }: any) => {
+const Item = ({ label, icon, href, active = false }: any) => {
   return (
-    <button
+    <Link
+      href={href}
       className={clsx(
         "w-full flex items-center gap-3 px-4 py-3 rounded-xl text-sm transition border",
         active
@@ -22,11 +25,13 @@ const Item = ({ label, icon, active = false }: any) => {
     >
       <span className="text-base shrink-0">{icon}</span>
       <span className="truncate">{label}</span>
-    </button>
+    </Link>
   );
 };
 
 const Sidebar = () => {
+  const pathname = usePathname();
+
   return (
     <div className="h-full flex flex-col p-4 bg-gradient-to-b from-[#08111F] via-[#091320] to-[#020617]">
       <div className="shrink-0 mb-5 pt-2 px-1">
@@ -37,12 +42,27 @@ const Sidebar = () => {
       </div>
 
       <div className="flex-1 min-h-0 overflow-y-auto pr-1 space-y-2 pt-2">
-        <Item label="Home" active icon={<FiHome />} />
-        <Item label="Search" icon={<FiSearch />} />
-        <Item label="Bookmarks" icon={<FiBookmark />} />
-        <Item label="Favorites" icon={<FiHeart />} />
-        <Item label="Settings" icon={<FiSettings />} />
-        <Item label="About" icon={<FiInfo />} />
+        <Item label="Home" href="/" active={pathname === "/"} icon={<FiHome />} />
+ 
+        <Item
+          label="Bookmarks"
+          href="/bookmarks"
+          active={pathname === "/bookmarks"}
+          icon={<FiBookmark />}
+        />
+        <Item
+          label="Favorites"
+          href="/favorites"
+          active={pathname === "/favorites"}
+          icon={<FiHeart />}
+        />
+        <Item
+          label="Settings"
+          href="/settings"
+          active={pathname === "/settings"}
+          icon={<FiSettings />}
+        />
+        <Item label="About" href="/about" active={pathname === "/about"} icon={<FiInfo />} />
       </div>
 
       <div className="shrink-0 mt-4 pt-4 border-t border-white/10">
