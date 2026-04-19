@@ -76,6 +76,13 @@ const Sidebar = () => {
           active={pathname === "/surah"}
           icon={<FiBookOpen />}
         />
+
+        <Item
+          label="Search"
+          href="/search"
+          active={pathname === "/search"}
+          icon={<FiBookOpen />}
+        />
         <Item
           label="Bookmarks"
           href="/bookmarks"

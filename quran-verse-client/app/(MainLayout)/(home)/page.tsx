@@ -8,6 +8,7 @@ import SurahCard from "../../../components/surahs/SurahCard";
 import EmptyCard from "@/components/surahs/EmptyCard";
 import SurahCardSkeleton from "@/components/surahs/SurahsCardSkeleton";
 import Link from "next/link";
+ 
 
 const page = () => {
   const [page, setPage] = useState(1);
@@ -22,6 +23,8 @@ const page = () => {
   return (
     <div className="space-y-8">
       <ContinueSection />
+
+      {/* <SearchBar/> */}
       <section className="flex items-center justify-between">
         <div>
           <h2 className="text-xl font-semibold text-white sm:text-2xl">
