@@ -41,6 +41,8 @@ export const useSearchAyah = (searchTerm: string) => {
   const { data, error, isLoading } = useSearchAyahQuery(searchTerm, {
     skip: !searchTerm,
   });
+  console.log(data);
+  
 
   if (error) {
     toast.error("Search failed!");

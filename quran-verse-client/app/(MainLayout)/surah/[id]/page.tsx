@@ -8,6 +8,8 @@ import { useGetSingleSurah } from "@/store/hooks/surahs.hook";
 import { useParams } from "next/navigation";
 import Pagination from "@/components/ayah/Pagination";
 import SearchBar from "@/components/layout/SearchBar";
+import { FiSearch } from "react-icons/fi";
+import { Input } from "@heroui/input";
 
 export default function SurahPage() {
   const params = useParams();
@@ -41,6 +43,7 @@ export default function SurahPage() {
   return (
     <div className="  text-white">
       <SearchBar />
+
       <div className="  px-4 py-6 sm:px-6">
         <div className="mb-6">
           <SurahHero surah={surah} />
