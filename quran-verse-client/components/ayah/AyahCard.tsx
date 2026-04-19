@@ -8,10 +8,13 @@ type Props = {
   translation: string;
 };
 
-export default function AyahCard({ number, arabic, translation }: Props) {
+const AyahCard = ({ number, arabic, translation }: Props) => {
   const { arabicSize, translationSize, font } = useSettings();
 
-  const fontClass = font === "amiri" ? "font-[var(--font-arabic-amiri)]" : "font-[var(--font-arabic-noto)]";
+  const fontClass =
+    font === "amiri"
+      ? "font-[var(--font-arabic-amiri)]"
+      : "font-[var(--font-arabic-noto)]";
 
   return (
     <div className="group flex gap-3 rounded-xl border border-white/10 bg-[#0B1322] px-3 py-2.5 transition hover:border-emerald-500/30">
@@ -36,4 +39,5 @@ export default function AyahCard({ number, arabic, translation }: Props) {
       </div>
     </div>
   );
-}
+};
+export default AyahCard;

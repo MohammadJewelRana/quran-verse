@@ -35,31 +35,27 @@ export const surahApi = baseApi.injectEndpoints({
       providesTags: ["Surahs"],
     }),
 
-getSingleSurah: builder.query({
-  query: ({ id, page = 1, limit = 10 }) => ({
-    url: `/surahs/${id}?page=${page}&limit=${limit}`,
-    method: "GET",
-  }),
-  providesTags: ["Surahs"],
-}),
-
-    searchAyah: builder.query({
-      query: (searchTerm: string) => {
-        const params = new URLSearchParams();
-
-        if (searchTerm) {
-          params.append("searchTerm", searchTerm);
-        }
-
-        return {
-          url: "/surahs/search",
-          method: "GET",
-          params,
-        };
-      },
+    getSingleSurah: builder.query({
+      query: ({ id, page = 1, limit = 10 }) => ({
+        url: `/surahs/${id}?page=${page}&limit=${limit}`,
+        method: "GET",
+      }),
       providesTags: ["Surahs"],
     }),
+
+searchAyah: builder.query({
+  query: ({ q, surahId }: { q: string; surahId?: number }) => ({
+    url: "/surahs/search", // ✅ ALWAYS SAME ENDPOINT
+    method: "GET",
+    params: {
+      q,
+      ...(surahId ? { surahId } : {}),
+    },
   }),
+}),
+
+  }),
+
   overrideExisting: true,
 });
 

@@ -37,10 +37,17 @@ export const useGetSingleSurah = (
   };
 };
 
-export const useSearchAyah = (searchTerm: string) => {
-  const { data, error, isLoading } = useSearchAyahQuery(searchTerm, {
-    skip: !searchTerm,
-  });
+
+export const useSearchAyah = (
+  searchTerm: string,
+  surahId?: number
+) => {
+  const { data, error, isLoading } = useSearchAyahQuery(
+    { q: searchTerm, surahId },
+    {
+      skip: !searchTerm,
+    }
+  );
 
   if (error) {
     toast.error("Search failed!");

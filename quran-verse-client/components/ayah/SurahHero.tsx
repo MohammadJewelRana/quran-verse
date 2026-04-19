@@ -9,7 +9,7 @@ type Props = {
   };
 };
 
-export default function SurahHero({ surah }: Props) {
+const SurahHero=({ surah }: Props)=> {
   return (
     <div className="relative overflow-hidden rounded-2xl p-6 sm:p-8 
     bg-gradient-to-br from-emerald-600/90 via-teal-600/90 to-emerald-700/90
@@ -50,3 +50,5 @@ export default function SurahHero({ surah }: Props) {
     </div>
   );
 }
+
+export default SurahHero;

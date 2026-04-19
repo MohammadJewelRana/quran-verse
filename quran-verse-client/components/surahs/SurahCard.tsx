@@ -125,7 +125,7 @@ const SurahCard = ({ surah }: Props) => {
 
       <button
         onClick={handleContinueReading}
-        className="relative z-10 mt-4 w-full rounded-xl bg-gradient-to-r from-emerald-500 to-teal-500 py-2 text-center text-sm font-medium text-black transition hover:brightness-110"
+        className="relative z-10 mt-4 w-full rounded-xl bg-gradient-to-r from-emerald-500 to-teal-500 py-2 text-center text-sm font-medium text-black transition hover:brightness-110 cursor-pointer"
         type="button"
       >
         Read Verses
