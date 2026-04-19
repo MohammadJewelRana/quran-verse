@@ -5,7 +5,7 @@ import { useSearchAyah } from "@/store/hooks/surahs.hook";
 import SearchBar from "@/components/layout/SearchBar";
 import SearchResults from "@/components/search/SearchResults";
 
-export default function SearchPage() {
+const page=()=> {
   const searchParams = useSearchParams();
 
   const q = searchParams.get("q") || "";
@@ -14,10 +14,7 @@ export default function SearchPage() {
 
   const { results, isLoading, isError } = useSearchAyah(q);
 
-  const totalCount = results.reduce(
-    (acc, s) => acc + s.verses.length,
-    0
-  );
+  const totalCount = results.reduce((acc: number, s: typeof results[number]) => acc + s.verses.length, 0);
 
   return (
     <div className="text-white">
@@ -39,7 +36,6 @@ export default function SearchPage() {
 
         {/* Content */}
         <div className="bg-[#06111F] rounded-xl border border-emerald-900/20">
-          
           {/* Loading */}
           {isLoading && (
             <div className="p-6 text-center text-emerald-300">
@@ -56,9 +52,7 @@ export default function SearchPage() {
 
           {/* No result */}
           {!isLoading && results.length === 0 && (
-            <div className="p-6 text-center text-white/50">
-              No verses found
-            </div>
+            <div className="p-6 text-center text-white/50">No verses found</div>
           )}
 
           {/* Results */}
@@ -76,3 +70,6 @@ export default function SearchPage() {
     </div>
   );
 }
+
+
+export default  page;

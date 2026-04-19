@@ -23,13 +23,13 @@ type HighlightedAyahType = {
   ayahId?: number;
 };
 
-export default function SearchResults({
+const SearchResults = ({
   results,
   highlightedAyah = {},
 }: {
   results: SurahResultType[];
   highlightedAyah?: HighlightedAyahType;
-}) {
+}) => {
   const { surahId: targetSurahId, ayahId: targetAyahId } = highlightedAyah;
   const router = useRouter();
 
@@ -56,9 +56,7 @@ export default function SearchResults({
   // 🔥 Auto scroll to highlighted ayah
   useEffect(() => {
     if (targetSurahId && targetAyahId) {
-      const el = document.getElementById(
-        `${targetSurahId}-${targetAyahId}`
-      );
+      const el = document.getElementById(`${targetSurahId}-${targetAyahId}`);
       el?.scrollIntoView({
         behavior: "smooth",
         block: "center",
@@ -84,9 +82,7 @@ export default function SearchResults({
                   ? "border-emerald-400 bg-emerald-900/20 shadow-md shadow-emerald-900/20"
                   : "border-white/5 bg-[#0B1220] hover:border-emerald-500/30 hover:bg-[#0f172a]"
               }`}
-              onClick={() =>
-                router.push(`/surah/${surahResult.surahId}`)
-              }
+              onClick={() => router.push(`/surah/${surahResult.surahId}`)}
             >
               {/* 🔹 Header */}
               <div className="flex justify-between items-center mb-3">
@@ -132,8 +128,11 @@ export default function SearchResults({
               </div>
             </div>
           );
-        })
+        }),
       )}
     </div>
   );
-}
+};
+
+
+export default SearchResults;
